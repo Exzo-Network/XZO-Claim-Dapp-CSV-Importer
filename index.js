@@ -1,19 +1,19 @@
 require('dotenv').config();
 const ethers = require('ethers');
-const contractDetails = require('./contract.json');
-const claims = require("./claims.json");
+// const contractDetails = require('./contract.json');
+// const claims = require("./claims.json");
 const fs = require("fs")
 const csv = require("csv-parser")
-const privateKey = process.env.PRIVATE_KEY;
+// const privateKey = process.env.PRIVATE_KEY;
 
-const provider = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/eth_sepolia');
-const wallet = new ethers.Wallet(privateKey, provider);
+// const provider = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/eth_sepolia');
+// const wallet = new ethers.Wallet(privateKey, provider);
 
-const contract = new ethers.Contract(contractDetails.address, contractDetails.abi, wallet);
+// const contract = new ethers.Contract(contractDetails.address, contractDetails.abi, wallet);
 
-const overrides = {
-  gasLimit: 9999999,
-}
+// const overrides = {
+//   gasLimit: 9999999,
+// }
 
 
 const readCSVFile = async (filePath) => {
@@ -39,16 +39,16 @@ const readCSVFile = async (filePath) => {
   });
 };
 
-const claim = async()=>{
-  const claimData =claims.res.claims[wallet.address];
-  try {
-     const transaction = await contract.claim(claimData.index,wallet.address,ethers.BigNumber.from(claimData.amount),claimData.proof,overrides)
-    const receipt = await transaction.wait();
-    console.log(receipt)
-  } catch (error) {
-    console.log("ERROR===",error.reason)
-  }
-}
+// const claim = async()=>{
+//   const claimData =claims.res.claims[wallet.address];
+//   try {
+//      const transaction = await contract.claim(claimData.index,wallet.address,ethers.BigNumber.from(claimData.amount),claimData.proof,overrides)
+//     const receipt = await transaction.wait();
+//     console.log(receipt)
+//   } catch (error) {
+//     console.log("ERROR===",error.reason)
+//   }
+// }
 
 const main = async()=>{await readCSVFile(
   "./data.csv"
